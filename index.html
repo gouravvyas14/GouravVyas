@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gourav Vyas — Digital Marketer & Content Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #4e8b6b;
+    --sage-dark: #356150;
+    --sage-light: #edf5f0;
+    --sage-mid: #b8d9c8;
+    --warm: #e07c47;
+    --warm-light: #fef2ea;
+    --ink: #2a2a2a;
+    --mid: #636363;
+    --muted: #9e9e9e;
+    --border: #ebe7e0;
+    --bg: #f7f4ef;
+    --white: #ffffff;
+    --deep: #2c4a3b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(247,244,239,0.95);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--sage); }
+
+  .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+  .nav-resume {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--sage); border: 1.5px solid var(--sage);
+    padding: 0.4rem 1rem; border-radius: 100px;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .nav-resume:hover { background: var(--sage); color: #fff; }
+
+  /* Hamburger */
+  .nav-toggle {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 0.4rem; background: none; border: none;
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu */
+  .nav-mobile {
+    display: none; position: fixed;
+    top: 65px; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0 1.25rem;
+    z-index: 199;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .nav-mobile.open { display: block; }
+  .nav-mobile a {
+    display: block; padding: 0.9rem 1.75rem;
+    font-size: 0.92rem; font-weight: 500;
+    color: var(--mid); text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s;
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: var(--sage); }
+  .nav-mobile .mobile-resume {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin: 1rem 1.75rem 0;
+    background: var(--sage-light); color: var(--sage);
+    border-radius: 10px; font-size: 0.85rem;
+    font-weight: 500; border-bottom: none;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* ── LAYOUT ── */
+  section { padding: 7rem 4rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding-top: 5rem; background: var(--white); position: relative; overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%; pointer-events: none;
+  }
+  .hero-blob-1 {
+    width: 560px; height: 560px;
+    background: radial-gradient(circle, rgba(78,139,107,0.1) 0%, transparent 70%);
+    top: -80px; right: -120px;
+  }
+  .hero-blob-2 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(224,124,71,0.08) 0%, transparent 70%);
+    bottom: 60px; left: -80px;
+  }
+
+  .hero-inner { max-width: 860px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sage); background: var(--sage-light);
+    padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+  }
+  .hero-tag-dot { width: 6px; height: 6px; background: var(--sage); border-radius: 50%; flex-shrink: 0; }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    line-height: 1.0; letter-spacing: -0.03em; color: var(--ink);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.25s forwards;
+  }
+  .hero-name em { font-style: italic; color: var(--sage); }
+
+  .hero-desc {
+    font-size: 1.12rem; color: var(--mid); max-width: 520px;
+    line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300;
+    opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  .hero-stats {
+    display: flex; gap: 0; margin-bottom: 3rem;
+    background: var(--bg); border-radius: 16px;
+    border: 1px solid var(--border); width: fit-content; overflow: hidden;
+    opacity: 0; animation: fadeUp 0.7s 0.55s forwards;
+  }
+  .stat-item {
+    padding: 1.25rem 2rem;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: var(--sage); line-height: 1; margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 0.7s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--sage); color: #fff;
+    padding: 0.85rem 1.75rem; border-radius: 100px;
+    font-size: 0.85rem; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.02em; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--sage-dark); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--ink);
+    padding: 0.85rem 1.75rem; border-radius: 100px;
+    font-size: 0.85rem; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.02em; border: 1.5px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--sage); color: var(--sage); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    color: var(--mid); font-size: 0.85rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--sage); }
+
+  .hero-scroll {
+    position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0; animation: fadeUp 0.7s 1s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 44px;
+    background: linear-gradient(to bottom, var(--sage-mid), transparent);
+    animation: scrollPulse 2.5s infinite;
+  }
+  .scroll-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 3.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── STORY ── */
+  #story { background: var(--bg); }
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 5rem; align-items: start;
+  }
+  .story-aside-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem; line-height: 1.18;
+    letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem;
+  }
+  .story-aside-note {
+    font-size: 0.85rem; color: var(--mid); line-height: 1.75;
+    border-left: 2px solid var(--sage-mid); padding-left: 1rem;
+  }
+  .story-body p {
+    font-size: 1.05rem; color: var(--mid);
+    line-height: 1.88; font-weight: 300; margin-bottom: 1.5rem;
+  }
+  .story-body p:last-child { margin-bottom: 0; }
+  .story-highlight {
+    font-family: 'DM Serif Display', serif !important;
+    font-size: 1.3rem !important; color: var(--ink) !important;
+    font-style: italic; line-height: 1.55 !important;
+    margin: 2.5rem 0 !important;
+    padding: 1.25rem 1.5rem !important;
+    border-left: 3px solid var(--sage);
+    background: var(--sage-light);
+    border-radius: 0 12px 12px 0;
+    font-weight: 400 !important;
+  }
+
+  /* ── INSTAGRAM ── */
+  #instagram { background: var(--white); }
+  .ig-hero {
+    text-align: center; padding: 3rem;
+    background: var(--sage-light);
+    border-radius: 20px; margin-bottom: 3rem;
+  }
+  .ig-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 1; letter-spacing: -0.04em; color: var(--sage-dark);
+  }
+  .ig-sublabel {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sage); margin-top: 0.75rem; font-weight: 500;
+  }
+  .ig-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.5rem; background: var(--sage); color: #fff;
+    padding: 0.65rem 1.5rem; border-radius: 100px;
+    font-size: 0.82rem; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.04em; transition: background 0.2s;
+  }
+  .ig-cta:hover { background: var(--sage-dark); }
+
+  .ig-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+  }
+  .ig-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .ig-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(78,139,107,0.1);
+    border-color: var(--sage-mid);
+  }
+  .ig-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .ig-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .ig-card-text { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── BRAND WORK ── */
+  #brand-work { background: var(--bg); }
+  .work-list {
+    border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden; background: var(--white);
+  }
+  .work-item {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem; align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .work-item:last-child { border-bottom: none; }
+  .work-item:hover { background: var(--sage-light); }
+  .work-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.08rem; color: var(--ink); margin-bottom: 0.2rem;
+  }
+  .work-brand { font-size: 0.82rem; color: var(--muted); }
+  .work-type {
+    display: inline-block; font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.28rem 0.75rem; border-radius: 100px;
+    border: 1px solid var(--sage-mid); color: var(--sage); background: var(--sage-light);
+  }
+  .work-year { font-size: 0.84rem; color: var(--muted); text-align: right; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--white); }
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+  }
+  .project-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.75rem;
+    text-decoration: none; display: block;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(78,139,107,0.12);
+    border-color: var(--sage-mid);
+  }
+  .project-emoji { font-size: 1.5rem; margin-bottom: 1.25rem; display: block; }
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .project-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+  .project-link {
+    font-size: 0.76rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--sage);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .project-arrow { transition: transform 0.2s; }
+  .project-card:hover .project-arrow { transform: translateX(4px); }
+
+  /* ── WRITING ── */
+  #writing { background: var(--bg); }
+  .writing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .writing-card {
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.75rem; background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .writing-card:hover {
+    border-color: var(--sage-mid);
+    box-shadow: 0 6px 20px rgba(78,139,107,0.08);
+  }
+  .writing-tag {
+    display: inline-block; font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--sage); background: var(--sage-light);
+    padding: 0.25rem 0.65rem; border-radius: 100px; margin-bottom: 1rem;
+  }
+  .writing-text { font-size: 0.95rem; color: var(--mid); line-height: 1.78; font-weight: 300; }
+
+  /* ── VIDEO ── */
+  #video { background: var(--white); }
+  .video-grid {
+    display: grid; grid-template-columns: minmax(0, 640px); gap: 1.5rem;
+    margin-bottom: 1.5rem; justify-content: center;
+  }
+  .video-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .video-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(78,139,107,0.12);
+    border-color: var(--sage-mid);
+  }
+  .video-card video {
+    width: 100%; display: block;
+    background: #000;
+    border-radius: 16px 16px 0 0;
+  }
+  .video-card-body { padding: 1.2rem 1.4rem 1.4rem; }
+  .video-card-tag {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--sage); background: var(--sage-light);
+    padding: 0.2rem 0.6rem; border-radius: 100px;
+    display: inline-block; margin-bottom: 0.6rem;
+  }
+  .video-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: var(--ink); margin-bottom: 0.3rem;
+  }
+  .video-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .video-request {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    background: var(--warm-light); border: 1px solid #f5c9a8;
+    border-radius: 14px; padding: 0.9rem 1.5rem;
+    font-size: 0.85rem; color: var(--warm); font-weight: 500;
+    text-align: center; line-height: 1.5;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--deep); }
+  #contact .section-label { color: rgba(255,255,255,0.4); }
+  #contact .section-label::after { background: rgba(255,255,255,0.12); }
+  .contact-inner { text-align: center; max-width: 580px; margin: 0 auto; }
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.75rem);
+    line-height: 1.12; letter-spacing: -0.03em; color: #fff; margin-bottom: 1.25rem;
+  }
+  .contact-title em { color: var(--sage-mid); font-style: italic; }
+  .contact-sub {
+    font-size: 1rem; color: rgba(255,255,255,0.6);
+    line-height: 1.78; font-weight: 300; margin-bottom: 3rem;
+  }
+  .contact-links {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 0.85rem;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.5rem; border-radius: 100px;
+    font-size: 0.85rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em; transition: all 0.2s;
+  }
+  .contact-link-primary { background: #fff; color: var(--deep); }
+  .contact-link-primary:hover { background: #e8f2ec; }
+  .contact-link-ghost { border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.72); }
+  .contact-link-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1f3329;
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-name { font-family: 'DM Serif Display', serif; color: rgba(255,255,255,0.45); font-size: 0.9rem; }
+  .footer-note { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.25; }
+    50%       { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE: tablet ── */
+  @media (max-width: 960px) {
+    .ig-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .video-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── RESPONSIVE: mobile ── */
+  @media (max-width: 720px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .nav-resume { display: none; }
+    .nav-toggle { display: flex; }
+
+    section { padding: 4.5rem 1.25rem; }
+
+    .hero-blob-1, .hero-blob-2 { display: none; }
+    .hero-stats { width: 100%; flex-wrap: wrap; gap: 0; }
+    .stat-item { flex: 1 1 50%; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+
+    .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .ig-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .writing-grid { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+
+    .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .work-year { text-align: left; }
+
+    .hero-cta { flex-direction: column; align-items: flex-start; }
+    .contact-links { flex-direction: column; align-items: center; }
+    .contact-link { width: 100%; max-width: 300px; justify-content: center; }
+
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">Gourav Vyas</a>
+  <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#instagram">Reach</a></li>
+    <li><a href="#brand-work">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="GouravVyas_MarketingResume.pdf" download class="nav-resume">
+      ↓ Resume
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <a href="#story" onclick="closeMobileNav()">Story</a>
+  <a href="#instagram" onclick="closeMobileNav()">Reach</a>
+  <a href="#brand-work" onclick="closeMobileNav()">Work</a>
+  <a href="#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="#writing" onclick="closeMobileNav()">Writing</a>
+  <a href="#video" onclick="closeMobileNav()">Video</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <a href="GouravVyas_MarketingResume.pdf" download class="mobile-resume">↓ Download Resume</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-inner">
+    <span class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Digital Marketer · Content Creator · Bangalore
+    </span>
+    <h1 class="hero-name">Gourav<br><em>Vyas.</em></h1>
+    <p class="hero-desc">
+      A developer who found his calling in marketing. I build audiences, craft content, and think in campaigns — with the unfair advantage of understanding what's happening under the hood.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">1M+</div>
+        <div class="stat-label">Instagram reach · 30 days</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Months production exp.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Live products shipped</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">
+        Let's work together
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2.5 7h9M8 4l3.5 3L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="GouravVyas_MarketingResume.pdf" download class="btn-outline">
+        ↓ Download Resume
+      </a>
+      <a href="#story" class="btn-ghost">Read my story →</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="container">
+    <p class="section-label reveal">The story</p>
+    <div class="story-grid reveal">
+      <div class="story-aside">
+        <h2 class="story-aside-title">A techie who found his real calling.</h2>
+        <p class="story-aside-note">This isn't a career pivot out of desperation. It's a move toward something I'm genuinely better at — and more alive doing.</p>
+      </div>
+      <div class="story-body">
+        <p>I started as a full-stack developer. Built products with React, Next.js, Node.js. Shipped real things that real people used. I was good at it.</p>
+        <p>But during my internship at MediaAMP, something shifted. I wasn't just writing code — I was participating in video shoots, drafting marketing copy, sitting in on GTM strategy sessions. And I noticed something: I was more energised in those rooms than in front of my IDE.</p>
+        <p class="story-highlight">"The most interesting problem isn't how to build the product — it's how to make people care about it."</p>
+        <p>I started freelancing on the side. Writing social media scripts and captions for lifestyle brands. Doing video shoots. Building my own Instagram. One day I opened my analytics and saw 1 million accounts reached — in a single month. Without a single paid rupee.</p>
+        <p>That's when I knew. The pivot wasn't a pivot at all — it was arriving somewhere I was always headed. I bring a developer's rigour to every campaign: I understand funnels, data, user psychology, and how platforms actually work. But my instincts are a marketer's. I know what makes people stop scrolling. What makes them share. What makes a brand feel human.</p>
+        <p>That combination is rare. And I'm just getting started.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="container">
+    <p class="section-label reveal">Social media presence</p>
+    <div class="ig-hero reveal">
+      <div class="ig-number">1,000,000+</div>
+      <div class="ig-sublabel">Organic Instagram reach · Last 30 days · Zero paid promotion</div>
+      <a href="https://www.instagram.com/gourav_and_life" target="_blank" rel="noopener" class="ig-cta">
+        @gourav_and_life →
+      </a>
+    </div>
+    <div class="ig-grid reveal">
+      <div class="ig-card">
+        <div class="ig-card-icon">📈</div>
+        <div class="ig-card-title">Organic Growth</div>
+        <p class="ig-card-text">Built entirely without paid promotion. Every reach impression earned through content quality, consistency, and platform intuition.</p>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-icon">🎬</div>
+        <div class="ig-card-title">Reels & Short-form</div>
+        <p class="ig-card-text">Deep understanding of what performs on Reels — hooks, pacing, audio trends, and the algorithm signals that push content to non-followers.</p>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-icon">🤝</div>
+        <div class="ig-card-title">Creator Empathy</div>
+        <p class="ig-card-text">Having been a creator myself means I understand influencer partnerships from both sides — making me significantly better at managing them.</p>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-icon">🧠</div>
+        <div class="ig-card-title">Audience Behaviour</div>
+        <p class="ig-card-text">I read Instagram analytics the way a developer reads logs — looking for patterns, drop-off points, and moments of genuine resonance.</p>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-icon">🗓️</div>
+        <div class="ig-card-title">Content Strategy</div>
+        <p class="ig-card-text">Consistent content calendars, format experimentation, and A/B testing ideas organically before recommending them for brand spend.</p>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-icon">🌍</div>
+        <div class="ig-card-title">Internet Culture</div>
+        <p class="ig-card-text">Closely tracks trends, meme formats, and cultural moments — translating them into brand-safe, timely content before they peak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND WORK -->
+<section id="brand-work">
+  <div class="container">
+    <p class="section-label reveal">Freelance & brand work</p>
+    <div class="work-list reveal">
+      <div class="work-item">
+        <div>
+          <div class="work-name">Social Media Campaign</div>
+          <div class="work-brand">Lifestyle Brand · Product Launch</div>
+        </div>
+        <span class="work-type">Captions & Scripts</span>
+        <div class="work-year">2025</div>
+      </div>
+      <div class="work-item">
+        <div>
+          <div class="work-name">Brand Video Shoot</div>
+          <div class="work-brand">Lifestyle Brand · Product Showcase</div>
+        </div>
+        <span class="work-type">Video Production</span>
+        <div class="work-year">2025</div>
+      </div>
+      <div class="work-item">
+        <div>
+          <div class="work-name">Instagram Content Series</div>
+          <div class="work-brand">Lifestyle Brand · Ongoing Content</div>
+        </div>
+        <span class="work-type">Content Writing</span>
+        <div class="work-year">2024–25</div>
+      </div>
+      <div class="work-item">
+        <div>
+          <div class="work-name">GTM Strategy + Copy</div>
+          <div class="work-brand">MediaAMP · Product Launch</div>
+        </div>
+        <span class="work-type">Strategy & Copywriting</span>
+        <div class="work-year">2025</div>
+      </div>
+      <div class="work-item">
+        <div>
+          <div class="work-name">Product Video Shoot</div>
+          <div class="work-brand">MediaAMP · Digital Asset Production</div>
+        </div>
+        <span class="work-type">Video & Direction</span>
+        <div class="work-year">2025</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem; color:var(--muted); margin-top:1.25rem; font-style:italic;">Specific brand names available on request.</p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label reveal">Products I've shipped</p>
+    <div class="projects-grid reveal">
+      <a href="https://deepwrk.vercel.app" target="_blank" rel="noopener" class="project-card">
+        <span class="project-emoji">🧠</span>
+        <div class="project-name">Deepwrk</div>
+        <p class="project-desc">AI-powered focus & productivity SaaS. Solo-founded — built, designed, and marketed end-to-end.</p>
+        <div class="project-link">deepwrk.vercel.app <span class="project-arrow">→</span></div>
+      </a>
+      <a href="https://hungrybite.onrender.com" target="_blank" rel="noopener" class="project-card">
+        <span class="project-emoji">🍔</span>
+        <div class="project-name">HungryBite</div>
+        <p class="project-desc">AI-powered food ordering platform with smart recommendations and a seamless consumer experience.</p>
+        <div class="project-link">hungrybite.onrender.com <span class="project-arrow">→</span></div>
+      </a>
+      <a href="https://autofix-ai-frontend.onrender.com" target="_blank" rel="noopener" class="project-card">
+        <span class="project-emoji">🛠️</span>
+        <div class="project-name">AutoFix AI</div>
+        <p class="project-desc">AI debugging assistant with real-time code analysis and automated fix suggestions.</p>
+        <div class="project-link">autofix-ai-frontend.onrender.com <span class="project-arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING SAMPLES -->
+<section id="writing">
+  <div class="container">
+    <p class="section-label reveal">Writing samples</p>
+    <div class="writing-grid reveal">
+      <div class="writing-card">
+        <span class="writing-tag">Instagram Caption · Travel Brand</span>
+        <p class="writing-text">Some trips change your itinerary. A few change your perspective. And then there are the ones that quietly change you — the ones you only fully understand months later, somewhere between a Tuesday meeting and a window seat on a bus you almost missed.<br><br>That's the kind of travel we're obsessed with. ✈️<br><br>#EscapeTheOrdinary #TravelDeep</p>
+      </div>
+      <div class="writing-card">
+        <span class="writing-tag">Reel Script · Lifestyle Product</span>
+        <p class="writing-text"><em>[Hook — 0-2s]</em> "You've been doing mornings wrong."<br><br><em>[Problem — 2-6s]</em> Most people start their day reacting — notifications, news, other people's urgency.<br><br><em>[Solution — 6-12s]</em> What if the first 20 minutes were completely yours?<br><br><em>[CTA — 12-15s]</em> Try it tomorrow. No app needed. Just you and 20 minutes of silence. Then tell me what changes. 👇</p>
+      </div>
+      <div class="writing-card">
+        <span class="writing-tag">Instagram Caption · Fashion/Lifestyle</span>
+        <p class="writing-text">Wear it like you mean it. Not for the feed. Not for the comments. For the version of you that walks into a room and doesn't need to announce anything.<br><br>That's the energy we design for. 🖤<br><br>#WornWithIntent</p>
+      </div>
+      <div class="writing-card">
+        <span class="writing-tag">Product Launch Copy · SaaS</span>
+        <p class="writing-text">We built Deepwrk because we were tired of productivity apps that looked beautiful and changed nothing.<br><br>No streaks. No gamification. No guilt.<br><br>Just you, your focus, and an AI that actually understands how your brain works best.<br><br>It's free. It's live. And it might just be the last focus app you try. 🧠<br><br>deepwrk.vercel.app</p>
+      </div>
+      <div class="writing-card">
+        <span class="writing-tag">Community Post · Developer Audience</span>
+        <p class="writing-text">Hot take: the best developers I know are obsessed with the user, not the code.<br><br>They don't ask "how do I build this?" They ask "why would someone want this?" and "what makes them come back?"<br><br>That shift? That's not just good engineering. That's marketing. And the line between the two is thinner than most people admit. 🔁</p>
+      </div>
+      <div class="writing-card">
+        <span class="writing-tag">Reel Hook · Viral Format</span>
+        <p class="writing-text"><em>[Text on screen]</em> "Things nobody tells you about building your first audience:"<br><br>1. The first 1000 are the hardest.<br>2. Consistency beats virality every time.<br>3. Your niche will find you — if you keep showing up.<br>4. The algorithm isn't your enemy. Inconsistency is.<br>5. One post won't make you. Fifty will.<br><br>Save this for the days it feels pointless. 📌</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO WORK -->
+<section id="video">
+  <div class="container">
+    <p class="section-label reveal">Brand video work</p>
+    <div class="video-grid reveal">
+      <div class="video-card">
+        <video id="brandVideo" controls preload="metadata" muted playsinline>
+          <source src="Brand2.mp4" type="video/mp4">
+        </video>
+        <div class="video-card-body">
+          <span class="video-card-tag">University Reel</span>
+          <div class="video-card-title">Trend & Cinematography Reel</div>
+          <p class="video-card-desc">A cinematic reel created for a university — blending current trends with intentional storytelling and visual composition.</p>
+        </div>
+      </div>
+    </div>
+    <div class="video-request">
+      🎬&nbsp; Full reel available on request — brand shoots, social content, and video production work across campaigns.
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label reveal">Get in touch</p>
+    <div class="contact-inner reveal">
+      <h2 class="contact-title">Let's build something <em>worth sharing.</em></h2>
+      <p class="contact-sub">Whether it's a campaign, a collaboration, or a conversation — I'd love to connect. Currently open to full-time and internship roles in marketing, growth, and content.</p>
+      <div class="contact-links">
+        <a href="mailto:gouravvyas542@gmail.com" class="contact-link contact-link-primary">
+          ✉️ gouravvyas542@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/gourav-vyas14" target="_blank" rel="noopener" class="contact-link contact-link-ghost">
+          LinkedIn →
+        </a>
+        <a href="https://www.instagram.com/gourav_and_life" target="_blank" rel="noopener" class="contact-link contact-link-ghost">
+          @gourav_and_life →
+        </a>
+        <a href="GouravVyas_MarketingResume.pdf" download class="contact-link contact-link-ghost">
+          ↓ Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Gourav Vyas</span>
+  <span class="footer-note">Developer turned Marketer · Bangalore, India · 2025</span>
+</footer>
+
+<script>
+  // Video autoplay on scroll into view
+  const brandVideo = document.getElementById('brandVideo');
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        brandVideo.play();
+      } else {
+        brandVideo.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+  videoObserver.observe(brandVideo);
+
+  // Mobile nav
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
+  navToggle.addEventListener('click', () => {
+    const open = navMobile.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+  });
+  function closeMobileNav() {
+    navMobile.classList.remove('open');
+    navToggle.classList.remove('open');
+  }
+  document.addEventListener('click', e => {
+    if (!navToggle.contains(e.target) && !navMobile.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const onScroll = () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 140) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+</body>
+</html>
